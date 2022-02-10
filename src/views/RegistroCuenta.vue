@@ -216,9 +216,14 @@ input {
     
 }
 
+input[type=checkbox] {
+    box-shadow: none;
+}
+
 .required:after {
     content:" *";
     color: red;
 }
+
 
 </style>
