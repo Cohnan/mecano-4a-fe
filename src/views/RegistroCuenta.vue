@@ -7,17 +7,17 @@
              <h2>Registro</h2> 
             <form v-on:submit.prevent="processSignUp" >
                 
-                <input type="text" v-model="users.nombre" placeholder="Nombre">
+                <input type="text" v-model="users.nombre" placeholder="Nombre *" minlength="4" maxlength="100" required>
                 <img   class="nombre" src="../../Imagenes/otrosIconos/tele.svg"/>
                 <br>
 
-                <input type="text" v-model="users.usuario" placeholder="Usuario">
+                <input type="text" v-model="users.usuario" placeholder="Usuario *" minlength="4" maxlength="100" required>
                 <br>
 
-                <input type="text" v-model="users.correo" placeholder="Correo">
+                <input type="email" v-model="users.correo" placeholder="Correo *" minlength="4" maxlength="100" required>
                 <br>
                 
-                <input type="number" v-model="users.telefono" placeholder="Teléfono">
+                <input type="number" v-model="users.telefono" placeholder="Teléfono" min=0>
                 <br>
 
                 <input type="text" v-model="users.pais" placeholder="País">
@@ -29,7 +29,7 @@
                 <input type="text" v-model="users.ciudad" placeholder="Ciudad">
                 <br>      
 
-                <input type="password" v-model="users.password" placeholder="Contraseña">
+                <input type="password" v-model="users.password" placeholder="Contraseña *" minlength="6" maxlength="100" required>
                 <br> 
                 
                 <input class="check" type="checkbox" v-model="users.is_staff" placeholder="Eres administrador">
@@ -201,5 +201,14 @@ methods: {
      position: absolute; top: 2px; right: 5px;
 }
 
+input {
+    color:#E5E7E9;
+    
+}
+
+.required:after {
+    content:" *";
+    color: red;
+}
 
 </style>
