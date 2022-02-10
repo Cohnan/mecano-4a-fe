@@ -37,10 +37,10 @@
                     minlength="6" maxlength="100" required>
                 <br> 
                 
-                <input class="check" type="checkbox" v-model="users.is_staff" 
+                <label for="es_admin"> ¿Administrador? </label>
+                <input class="check" type="checkbox" v-model="users.is_staff"  id="es_admin"
                     placeholder="¿Eres administrador?">
-                <br> 
-                <h4> Administrador </h4>
+                <br/>
             
                 <button type="submit">Registrarse</button>
             </form>
@@ -174,7 +174,7 @@ export default {
  
 .signUp_user button{
     position:absolute;
-    left:180pt;
+    left: calc(50% - 5vw);
     width: 10vw;
     height: 5vh;
     font-family: Questa Grande;
@@ -191,12 +191,12 @@ export default {
     background: rgb(30, 212, 185);
 }
 
- .signUp_user h4 {
+ .signUp_user label {
     display: flex;
     justify-content: center;
     align-items: center;
     color:white;
-    font-size: 20px;
+    font-size: 1em;
 }
 
  .signUp_user h2 {
