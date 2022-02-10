@@ -7,32 +7,38 @@
              <h2>Registro</h2> 
             <form v-on:submit.prevent="processSignUp" >
                 
-                <input type="text" v-model="users.nombre" placeholder="Nombre *" minlength="4" maxlength="100" required>
+                <input type="text" v-model="users.nombre" placeholder="Nombre *" 
+                    minlength="4" maxlength="100" v-on:blur="trimSpaces($event, users.nombre)" required>
                 <img   class="nombre" src="../../Imagenes/otrosIconos/tele.svg"/>
                 <br>
 
-                <input type="text" v-model="users.usuario" placeholder="Usuario *" minlength="4" maxlength="100" required>
+                <input type="text" v-model="users.usuario" placeholder="Usuario *" 
+                    minlength="4" maxlength="100" v-model.trim="users.usuario" pattern="[^\s]*" oninvalid="this.setCustomValidity('El nombre de usuario no permite espacios en blanco y debe tener al menos 4 caracteres.')" required>
                 <br>
 
-                <input type="email" v-model="users.correo" placeholder="Correo *" minlength="4" maxlength="100" required>
+                <input type="email" v-model="users.correo" placeholder="Correo *" 
+                    minlength="4" maxlength="100" v-model.trim="users.correo" required>
                 <br>
                 
-                <input type="number" v-model="users.telefono" placeholder="Teléfono" min=0>
+                <input type="number" v-model="users.telefono" placeholder="Teléfono" 
+                    min=0>
                 <br>
 
                 <input type="text" v-model="users.pais" placeholder="País">
                 <br>
 
-                <input type="text" v-model="users.departamento" placeholder="Departamento">
+                <input type="text" v-model="users.departamento" placeholder="Estado/Departamento">
                 <br>
 
                 <input type="text" v-model="users.ciudad" placeholder="Ciudad">
                 <br>      
 
-                <input type="password" v-model="users.password" placeholder="Contraseña *" minlength="6" maxlength="100" required>
+                <input type="password" v-model="users.password" placeholder="Contraseña *" 
+                    minlength="6" maxlength="100" required>
                 <br> 
                 
-                <input class="check" type="checkbox" v-model="users.is_staff" placeholder="Eres administrador">
+                <input class="check" type="checkbox" v-model="users.is_staff" 
+                    placeholder="¿Eres administrador?">
                 <br> 
                 <h4> Administrador </h4>
             
@@ -65,45 +71,49 @@ export default {
 
          },
         };
-},
+    },
 
-mounted: function() {
-    document.querySelector("#toggleLog").checked = true;
-},
+    mounted: function() {
+        document.querySelector("#toggleLog").checked = true;
+    },
 
-methods: {
-    processSignUp: async function() {
-        await this.$apollo
-        .mutate({
-            mutation: gql`
-            mutation($registroInput : UsuarioIn!) {
-                registrarUsuario(registroInput:$registroInput) {
-                  refresh
-                  access
+    methods: {
+        processSignUp: async function() {
+            await this.$apollo
+            .mutate({
+                mutation: gql`
+                mutation($registroInput : UsuarioIn!) {
+                    registrarUsuario(registroInput:$registroInput) {
+                    refresh
+                    access
+                    }
                 }
-            }
-            `,
-        variables: {
-            registroInput: this.users,
-        },
-      })
-        .then((result) => {
-          let dataLogIn = {
-            usuario: this.users.usuario,
-            token_access: result.data.registrarUsuario.access,
-            token_refresh: result.data.registrarUsuario.refresh,
-            };
-
-          this.$emit("registroExitoso", dataLogIn);
-          alert("Registro exitoso: " + this.users.usuario);
-
+                `,
+            variables: {
+                registroInput: this.users,
+            },
         })
-        .catch((error) => {
-          alert("Error registrando al usuario. " + error);
-           console.log(JSON.stringify(error))
-        });
+            .then((result) => {
+            let dataLogIn = {
+                usuario: this.users.usuario,
+                token_access: result.data.registrarUsuario.access,
+                token_refresh: result.data.registrarUsuario.refresh,
+                };
 
-      },
+            this.$emit("registroExitoso", dataLogIn);
+            alert("Registro exitoso: " + this.users.usuario);
+
+            })
+            .catch((error) => {
+            alert("Error registrando al usuario. " + error);
+            console.log(JSON.stringify(error))
+            });
+
+        },
+
+        trimSpaces: function(evento, valor) {
+            evento.srcElement.value = evento.srcElement.value.trim();
+        }
     },
 }
 </script>
