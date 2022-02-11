@@ -13,17 +13,18 @@
     <div class="container">
       <!--img class= "planetas" src= "../../Imagenes/planetas.png"-->
     <form v-on:submit.prevent="procesarInicioSesion">
-      <label for="correo">Correo </label>
-      <input class="redondeado" type="text" v-model="usuario.correo" placeholder="Correo" id="correo"/>
+      
+      <label for="email">Correo </label>
+      <input type="text" class= "iconemail" v-model="usuario.correo" id="correo"/>
       <br/>
                 
       <br>
       <label for="contraseña">Contraseña </label>
-      <input class="redondeado" type="password" v-model="usuario.password" placeholder="Contraseña" id="contraseña"/>
+      <input type="password" class="iconpassword" v-model="usuario.password" id="contraseña"/>
       <br/>
       <br>
       <div class="contenedor-botones">
-        <button class="btnIniciar" type="submit">Iniciar Sesión</button>
+        <button class="btnIniciar"   type="submit">Iniciar Sesión</button>
         <button class="btnRegistrar" type="button" v-on:click="$router.push({name: '/registro-cuenta'})">Únete</button>
       </div>
     </form>
@@ -169,20 +170,25 @@ input{
     flex-direction: row;
     min-width: 20rem;
     height: 3rem;
-
     box-sizing: border-box;
-    padding: 10pt 20pt;
+    padding: 10pt 33pt;
     margin: auto;
-
     border: 1px solid rgb(217,217,217);
     border-radius: 30px;
     font-family: Questa Grande;
+    color:white;
     text-shadow:black 0.1em 0.1em 0.2em;
     font-size: 1.1rem;
     background-color: transparent;
     box-shadow: 0 0 10px rgb(235, 245, 239)
     
 }
+
+
+input:focus{
+  outline-color:turquoise;
+}
+
 
 td {
     text-align: center;
@@ -208,7 +214,7 @@ button {
 }
 
 button:hover{
-    color: #E5E7E9;
+    color: hsl(210, 28%, 34%);
     background: rgb(30, 212, 185);
     
 }
@@ -218,6 +224,22 @@ button:hover{
   width:300pt;
   left:295pt;
   bottom:130pt;
+ 
+}
+
+.iconemail{
+  background-image:url(../../Imagenes/inicioIcon/descarga.png);
+  background-size: 45px 45px;
+  background-repeat: no-repeat;
+  background-position: 0.5rem center;
+ 
+}
+
+.iconpassword {
+  background-image:url(../../Imagenes/inicioIcon/whitekey.png);
+  background-size: 25px 25px;
+  background-repeat: no-repeat;
+  background-position: 0.8rem center;
  
 }
 

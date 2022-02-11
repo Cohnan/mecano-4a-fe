@@ -15,8 +15,8 @@
           </keep-alive>
           <router-link to="/registro-cuenta" v-if="!estaAutenticado() || esAdministrador()">| Únete </router-link>
           <!-- <router-link to="/designs"> diseño teclado </router-link> -->
-          <router-link to="/aprende/leccionDB/61ae3051f4a898570c2f303c">| Lección de Prueba </router-link>
-          <router-link to="/lista-niveles-adm" v-if="estaAutenticado()"> | Crear Niveles </router-link>
+          <router-link to="/aprende/leccionDB/61ae3051f4a898570c2f303c">   | Lección de Prueba </router-link>
+          <router-link to="/lista-niveles-adm" v-if="estaAutenticado()">   | Crear Niveles </router-link>
           <router-link to="/lista-lecciones-adm" v-if="estaAutenticado()"> | Crear Lecciones  </router-link>
           <router-link to="/perfil" v-if="estaAutenticado()">| Perfil </router-link>
         </div>
@@ -339,6 +339,15 @@ footer h3 {
   color: white;
   text-align: center;
   line-height: 0em;
+}
+
+span{
+  color:turquoise;
+  font-size: 10pt;
+  position:relative;
+  right: 1.6rem;
+  top: 0.5em;
+  text-shadow: black 0.1em 0.1em 0.2em;
 }
 </style>
 

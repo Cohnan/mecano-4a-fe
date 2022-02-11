@@ -5,10 +5,12 @@
 
         <div class="container_signUp_user">
              <h2>Registro</h2> 
+             <img class="teles1" src="../../Imagenes/otrosIconos/tele.svg"/>
+
             <form v-on:submit.prevent="processSignUp" >
                 
                 <input type="text" v-model="users.nombre" placeholder="Nombre">
-                <img   class="nombre" src="../../Imagenes/otrosIconos/tele.svg"/>
+                
                 <br>
 
                 <input type="text" v-model="users.usuario" placeholder="Usuario">
@@ -112,6 +114,7 @@ methods: {
 <style scoped>
 
 .signUp_user{
+    z-index: 0.8;
     margin: -8px;
     padding: 0;
     height: 100vh;
@@ -161,6 +164,15 @@ methods: {
     text-shadow:black 0.1em 0.1em 0.2em;
     box-shadow: 0 0 10px rgb(235, 245, 239);
 }
+
+.signUp_user input:focus{
+    outline-color: turquoise;
+}
+
+.signUp_user input::check{
+    border:none;
+
+}
  
 .signUp_user button{
     position:absolute;
@@ -197,9 +209,13 @@ methods: {
     font-size: 20px;
 }
 
-.nombre{
-     position: absolute; top: 2px; right: 5px;
+.teles1{
+    z-index: -0.8;
+    position: absolute; 
+    right:500px;
+
 }
+
 
 
 </style>

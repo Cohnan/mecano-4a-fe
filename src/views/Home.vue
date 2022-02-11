@@ -56,6 +56,7 @@ export default {
     animation: type 5s steps(40, end), blink .5s step-end infinite alternate;
     -webkit-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
+    animation-iteration-count:2;
 }
 
 
@@ -107,7 +108,7 @@ p {
 .telescopio{
   position: relative;
   top: -6pt;
-  left:-500pt;
+  left:-460pt;
   width: 90pt;
   height: 55pt;
 
